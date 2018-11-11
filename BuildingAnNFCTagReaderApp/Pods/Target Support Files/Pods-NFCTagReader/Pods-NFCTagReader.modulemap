@@ -1,0 +1,6 @@
+framework module Pods_NFCTagReader {
+  umbrella header "Pods-NFCTagReader-umbrella.h"
+
+  export *
+  module * { export * }
+}
