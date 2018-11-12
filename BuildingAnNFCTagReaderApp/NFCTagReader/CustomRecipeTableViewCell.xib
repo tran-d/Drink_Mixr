@@ -18,30 +18,44 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="88.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4e-Li-qTb">
-                        <rect key="frame" x="16" y="32" width="84" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4e-Li-qTb">
+                        <rect key="frame" x="20" y="0.0" width="175" height="88.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r2K-Pf-1qv">
-                        <rect key="frame" x="212" y="28" width="92" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r2K-Pf-1qv">
+                        <rect key="frame" x="205" y="11" width="47" height="67"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fl. oz." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSW-J6-hiW">
+                        <rect key="frame" x="258" y="0.0" width="42" height="88.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="r2K-Pf-1qv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="28" id="6G3-U1-8C3"/>
-                    <constraint firstItem="C4e-Li-qTb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="9jl-ak-KN8"/>
-                    <constraint firstAttribute="trailing" secondItem="r2K-Pf-1qv" secondAttribute="trailing" constant="16" id="9wl-h0-wg1"/>
-                    <constraint firstAttribute="bottom" secondItem="r2K-Pf-1qv" secondAttribute="bottom" constant="30.5" id="Dq9-Ah-qxi"/>
-                    <constraint firstItem="C4e-Li-qTb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="MJw-Jc-zB0"/>
-                    <constraint firstItem="r2K-Pf-1qv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="212" id="RY9-7c-AsX"/>
-                    <constraint firstAttribute="bottom" secondItem="C4e-Li-qTb" secondAttribute="bottom" constant="35.5" id="W3z-Na-nux"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="r2K-Pf-1qv" secondAttribute="bottom" id="7to-nK-tfc"/>
+                    <constraint firstItem="C4e-Li-qTb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="9jl-ak-KN8"/>
+                    <constraint firstAttribute="trailing" secondItem="kSW-J6-hiW" secondAttribute="trailing" constant="20" id="A9h-Qq-V8n"/>
+                    <constraint firstItem="C4e-Li-qTb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MJw-Jc-zB0"/>
+                    <constraint firstItem="r2K-Pf-1qv" firstAttribute="leading" secondItem="C4e-Li-qTb" secondAttribute="trailing" constant="10" id="Pyp-jB-yMk"/>
+                    <constraint firstItem="r2K-Pf-1qv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="V3S-a7-viD"/>
+                    <constraint firstAttribute="bottom" secondItem="C4e-Li-qTb" secondAttribute="bottom" id="W3z-Na-nux"/>
+                    <constraint firstAttribute="trailing" secondItem="C4e-Li-qTb" secondAttribute="trailing" constant="125" id="WDv-VS-Ft8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="r2K-Pf-1qv" secondAttribute="trailing" constant="52" id="elI-Ve-4iO"/>
+                    <constraint firstAttribute="bottom" secondItem="kSW-J6-hiW" secondAttribute="bottom" id="u52-tN-DEk"/>
+                    <constraint firstItem="kSW-J6-hiW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wjC-pW-lnw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="ingredient_label" destination="C4e-Li-qTb" id="oXO-BD-N2F"/>
+                <outlet property="volume_value" destination="r2K-Pf-1qv" id="jXc-J4-AlD"/>
+            </connections>
             <point key="canvasLocation" x="-243.19999999999999" y="106.59670164917542"/>
         </tableViewCell>
     </objects>

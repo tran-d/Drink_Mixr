@@ -8,6 +8,8 @@
 import UIKit
 import CoreNFC
 
+
+
 extension MessagesTableViewController {
     
     // MARK: - Table View Functions
@@ -18,12 +20,26 @@ extension MessagesTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        /*let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
 //                let message = detectedMessages[indexPath.row].records[0].payload
 //                cell.textLabel?.text = String(data: message, encoding: .utf8)
         cell.textLabel?.text = ingredients[indexPath.row]
+        return cell*/
+        
+        let cell = Bundle.main.loadNibNamed("CustomRecipeTableViewCell", owner: self, options: nil)?.first as! CustomRecipeTableViewCell
+        
+        cell.ingredient_label.text = ingredients[indexPath.row]
+        cell.volume_value.text = volumes[indexPath.row]
         return cell
+        
+    }
+    
+//    // updates volume stored from text field
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(volumes[indexPath.row])
+        //        print("selected")
     }
     
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

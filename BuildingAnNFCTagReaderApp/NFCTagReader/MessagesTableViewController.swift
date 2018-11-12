@@ -10,7 +10,11 @@ import CoreNFC
 import SwiftyJSON
 import Alamofire
 
-
+//struct cellData {
+//    let cellID: Int!
+//    let text : String!
+//    let value : Double!
+//}
 
 /// - Tag: MessagesTableViewController
 class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDelegate {
@@ -21,18 +25,27 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     var detectedMessages = [NFCNDEFMessage]()
     var session: NFCNDEFReaderSession?
     var ingredients = [String]()
+    var volumes = [String]()
+    var user = "robot"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Alamofire.request("https://stark-beach-45459.herokuapp.com/ingredients").responseJSON { response in
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/ingredients", method: .get).responseJSON { response in
             if let result = response.result.value {
                 let json = JSON(result)
                 print(json)
+                
+                for (key,_):(String, JSON) in json {
+                    if key != "_id" {
+                        print(key)
+                        self.ingredients.append(key)
+                        self.volumes.append("0.0")
+                    }
+                }
+                self.tableView.reloadData()
             }
         }
-        ingredients.append("test")
-        ingredients.append("hello")
     }
     
     // MARK: - Actions
@@ -51,7 +64,16 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
         DispatchQueue.main.async {
             // Process detected NFCNDEFMessage objects.
             self.detectedMessages.append(contentsOf: messages)
-            self.tableView.reloadData()
+            
+            if let text = String(data: messages[0].records[0].payload, encoding: .utf8) {
+                print(text)
+                if (text == "\u{02}endrink_mixr"){
+                    self.POST_Order()
+                }
+                
+            } else {
+                print("Invalid data")
+            }
         }
     }
     
@@ -85,8 +107,41 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     func addMessage(fromUserActivity message: NFCNDEFMessage) {
         DispatchQueue.main.async {
             self.detectedMessages.append(message)
-            self.tableView.reloadData()
+            //            self.tableView.reloadData()
+            
+            print("NFC tag detected")
+            self.POST_Order()
         }
+    }
+    
+    
+    // POSTs an order by reading text fields and making a HTTPS POST Request
+    func POST_Order() {
+        
+        // reads ingredient and volume values and update array
+        let cells = self.tableView.visibleCells as! Array<CustomRecipeTableViewCell>
+        
+        for cell in cells {
+            let index = self.tableView.indexPath(for: cell)!.row
+                ingredients[index] = cell.ingredient_label.text!
+                volumes[index] = cell.volume_value.text!
+        }
+        
+        var order = [String:Double]()
+        for (ingredient, volume) in zip(ingredients, volumes) {
+            order[ingredient] = (volume as NSString).doubleValue
+            print("\(ingredient): \((volume as NSString).doubleValue)")
+        }
+        
+        let parameters: Parameters = [
+        "user_name": user,
+        "order": order
+        ]
+        
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/order", method: .post, parameters: parameters,  encoding: JSONEncoding.default)
+    }
+    @IBAction func test(_ sender: Any) {
+        self.POST_Order()
     }
 }
 
