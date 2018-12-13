@@ -10,7 +10,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var userName = "sujay"
+    var userName = "robot"
 
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         navigationController.popToRootViewController(animated: true)
+        
+        
         let messageTableViewController = navigationController.topViewController as? MessagesTableViewController
         messageTableViewController?.addMessage(fromUserActivity: ndefMessage)
 
