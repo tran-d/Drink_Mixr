@@ -27,10 +27,79 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     var ingredients = [String]()
     var volumes = [String]()
     var user = "robot"
+    var recipeName = ""
+    var recipes = [[String:String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Recipe Name: " + recipeName)
+        
+        if recipeName == "" {
+            self.loadDefaultRecipe()
+        }
+        else {
+            self.getRecipes()
+        }
+    }
+    
+    func getRecipes() {
+        print("Getting Ingredients")
+        
+        recipes = [[String:String]]()
+        
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .get).responseJSON { response in
+            if let result = response.result.value {
+                let json = JSON(result)
+                print(json)
+                
+                for (recipe, subJson):(String,JSON) in json {
+                    var newRecipe: [String:String] = [:]
+                    
+                    for (key, value):(String,JSON) in subJson {
+                        let val = "\(value)"
+                        newRecipe[key] = val
+                        
+//                        if(key == "name") {
+//                            print("Recipe Name: \(value)")
+//                        }
+//                        else {
+//                            print("Ingredient: " + key)
+//                            print("Amount: \(value)")
+//
+//                        }
+                    }
+                    self.recipes.append(newRecipe)
+                }
+            }
+            
+            print(self.recipes)
+            
+            self.loadIngredients()
+        }
+        
+    }
+    
+    func loadIngredients() {
+        print("Loading Ingredients")
+        
+        self.ingredients = [String]()
+        self.volumes = [String]()
+        
+        for (recipe):[String:String] in recipes {
+            if recipe["name"] == recipeName {
+                for (key,value) in recipe {
+                    if(key != "name") {
+                        self.ingredients.append(key)
+                        self.volumes.append(value)
+                    }
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
+    func loadDefaultRecipe() {
         Alamofire.request("https://stark-beach-45459.herokuapp.com/ingredients", method: .get).responseJSON { response in
             if let result = response.result.value {
                 let json = JSON(result)
@@ -142,6 +211,36 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     }
     @IBAction func test(_ sender: Any) {
         self.POST_Order()
+    }
+    
+    func POST_recipe() {
+        // reads ingredient and volume values and update array
+        let cells = self.tableView.visibleCells as! Array<CustomRecipeTableViewCell>
+        
+        for cell in cells {
+            let index = self.tableView.indexPath(for: cell)!.row
+            ingredients[index] = cell.ingredient_label.text!
+            volumes[index] = cell.volume_value.text!
+        }
+        
+        var recipe = [String:AnyObject]()
+        for (ingredient, volume) in zip(ingredients, volumes) {
+            recipe[ingredient] = (volume as NSString).doubleValue as AnyObject
+            print("\(ingredient): \((volume as NSString).doubleValue)")
+        }
+        recipe["name"] = recipeName as AnyObject
+        
+//        let parameters: Parameters = [
+//            "recipe": recipe
+//        ]
+        
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .post, parameters: recipe,  encoding: JSONEncoding.default)
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        print("Saving recipe...")
+        self.POST_recipe()
+        self.getRecipes()
     }
 }
 

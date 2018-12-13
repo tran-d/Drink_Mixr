@@ -40,17 +40,18 @@
                             <outlet property="delegate" destination="kkV-3p-vKw" id="bdT-Bp-UVX"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Send" id="yeq-MP-YAl">
+                            <connections>
+                                <action selector="beginScanning:" destination="kkV-3p-vKw" id="svm-IS-N5X"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Recipe Details" id="sUb-7L-pDB">
                         <rightBarButtonItems>
-                            <barButtonItem title="Send" id="yeq-MP-YAl">
-                                <connections>
-                                    <action selector="beginScanning:" destination="kkV-3p-vKw" id="svm-IS-N5X"/>
-                                </connections>
-                            </barButtonItem>
                             <barButtonItem style="plain" id="C0f-dd-U9i">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e6i-4P-KJS">
-                                    <rect key="frame" x="254.33333333333337" y="7" width="92" height="30"/>
+                                    <rect key="frame" x="354" y="7" width="40" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="POST"/>
                                     <connections>
@@ -61,13 +62,28 @@
                                     <action selector="test:" destination="kkV-3p-vKw" id="VME-PL-HD5"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem style="plain" id="JT5-Ra-Ig3">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7nc-2G-yxM">
+                                    <rect key="frame" x="257" y="7" width="89" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Save">
+                                        <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="save:" destination="kkV-3p-vKw" eventType="touchUpInside" id="4th-X0-XUq"/>
+                                    </connections>
+                                </button>
+                                <connections>
+                                    <action selector="save:" destination="kkV-3p-vKw" id="lbw-7i-KDb"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uv2-cf-BJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="177"/>
+            <point key="canvasLocation" x="937.68115942028987" y="176.9021739130435"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="nbG-pj-mU2">
@@ -114,7 +130,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt0-nY-fNJ" userLabel="Recipe Name">
-                                            <rect key="frame" x="82.666666666666671" y="63.333333333333336" width="42" height="23.333333333333336"/>
+                                            <rect key="frame" x="81.666666666666671" y="63.333333333333336" width="42" height="23.333333333333336"/>
                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -128,8 +144,7 @@
                                     <constraint firstItem="gt0-nY-fNJ" firstAttribute="centerY" secondItem="BOh-Hw-Ql8" secondAttribute="centerY" id="Upg-J5-KLJ"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="label" destination="gt0-nY-fNJ" id="hvN-EL-vFv"/>
-                                    <segue destination="kkV-3p-vKw" kind="show" identifier="edit" id="N21-Xp-3vX"/>
+                                    <outlet property="label" destination="gt0-nY-fNJ" id="rBA-dG-L27"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -149,8 +164,14 @@
                                     <segue destination="kkV-3p-vKw" kind="show" identifier="add" id="TSD-LM-Urd"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="add:" destination="6JN-Kt-C2w" id="T2i-O3-y3g"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="kkV-3p-vKw" kind="show" identifier="edit" id="J7f-EQ-Qp6"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Py3-qh-NLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="Abh-2l-vdg" style="IBUITableViewCellStyleDefault" id="hNr-Ei-hkh">
@@ -175,6 +196,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="N21-Xp-3vX"/>
+        <segue reference="J7f-EQ-Qp6"/>
     </inferredMetricsTieBreakers>
 </document>

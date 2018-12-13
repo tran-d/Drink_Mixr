@@ -7,36 +7,59 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController {
     
-    let items = ["1","2","3","4","5","6","7","8","9","10"]
+    var recipes = ["1","2","3","4","5","6","7","8","9","10"]
+    var recipeNames = ["Lemonade","G Whiz"]
+    let user = "robot"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        
+//        getRecipes()
+        
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    func getRecipes() {
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .get).responseJSON { response in
+            if let result = response.result.value {
+                let json = JSON(result)
+                print(json)
+            }
+        }
+    }
+    
+    @IBAction func add(_ sender: Any) {
+        self.performSegue(withIdentifier: "add", sender: self)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "edit", sender: self)
+    }
+    
+    /* Pass data through Segue */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "edit" {
+            if let destinationVC = segue.destination as? MessagesTableViewController {
+                
+                print("Trying to set recipe name")
+                
+                if let collectionView = self.collectionView,
+                    let indexPath = collectionView.indexPathsForSelectedItems?.first,
+                    let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell,
+                    let recipeName = cell.label.text {
+                    destinationVC.recipeName = recipeName
+                    destinationVC.user = user
+                    print("Set recipe name to : " + recipeName)
+                }
+            }
+        }
     }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -46,14 +69,14 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return items.count
+        return recipeNames.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
     
         // Configure the cell
-        cell.label.text = items[indexPath.item]
+        cell.label.text = recipeNames[indexPath.item]
     
         return cell
     }
