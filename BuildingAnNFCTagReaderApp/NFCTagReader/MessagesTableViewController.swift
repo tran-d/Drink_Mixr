@@ -241,8 +241,10 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
             print("\(ingredient): \((volume as NSString).doubleValue)")
         }
         
-        // delete current recipe
-        deleteRecipe(self)
+        // delete current recipe if existing
+        if(recipeName != "") {
+            deleteRecipe(self)
+        }
         
         // replace with underscores
         recipeNameTextField.text = recipeNameTextField.text?.replacingOccurrences(of: " ", with: "_")
@@ -253,13 +255,9 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
         // update recipeName variable
         recipeName = recipeNameTextField.text as! String
         
-//        let parameters: Parameters = [
-//            "recipe": recipe
-//        ]
-        
-        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .post, parameters: recipe,  encoding: JSONEncoding.default)
-        
-        self.getRecipes()
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .post, parameters: recipe,  encoding: JSONEncoding.default).responseJSON { response in
+            self.getRecipes()
+        }
     }
     
     @IBAction func save(_ sender: Any) {
@@ -282,11 +280,14 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     
     @IBAction func deleteRecipe(_ sender: Any) {
         // delete recipeName
-        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user+"&recipe_name="+recipeName, method: .delete, encoding: JSONEncoding.default)
-        
-        if(sender is UIButton) {
-            backButtonTapped(sender as! UIButton)
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user+"&recipe_name="+recipeName, method: .delete, encoding: JSONEncoding.default).responseJSON { response in
+            
+            if(sender is UIButton) {
+                self.backButtonTapped(sender as! UIButton)
+            }
         }
+        
+        
     }
     
 }
