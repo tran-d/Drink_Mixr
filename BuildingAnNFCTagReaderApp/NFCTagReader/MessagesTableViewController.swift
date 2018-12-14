@@ -47,6 +47,10 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
         }
     }
     
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "unwindToRecipes", sender: self)
+    }
+    
     @IBOutlet weak var recipeNameTextField: UITextField!
     
     func getRecipes() {
@@ -102,6 +106,8 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
                 }
             }
         }
+        print(ingredients)
+        print(volumes)
         self.tableView.reloadData()
     }
     
@@ -235,6 +241,7 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
             print("\(ingredient): \((volume as NSString).doubleValue)")
         }
         recipe["name"] = recipeNameTextField.text as AnyObject
+        recipeName = recipeNameTextField.text as! String
         
 //        let parameters: Parameters = [
 //            "recipe": recipe
@@ -262,5 +269,11 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
             destinationVC.getRecipes()
         }
     }
+    
+    @IBAction func deleteRecipe(_ sender: Any) {
+        // delete recipeName
+        
+    }
+    
 }
 

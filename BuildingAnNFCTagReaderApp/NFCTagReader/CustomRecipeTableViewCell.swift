@@ -13,4 +13,5 @@ class CustomRecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredient_label: UILabel!
     
     @IBOutlet weak var volume_value: UITextField!
+
 }

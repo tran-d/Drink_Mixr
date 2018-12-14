@@ -30,6 +30,7 @@ extension MessagesTableViewController {
         let cell = Bundle.main.loadNibNamed("CustomRecipeTableViewCell", owner: self, options: nil)?.first as! CustomRecipeTableViewCell
         
         cell.ingredient_label.text = ingredients[indexPath.row]
+        cell.volume_value.keyboardType = UIKeyboardType.decimalPad
         cell.volume_value.text = volumes[indexPath.row]
         return cell
         

@@ -13,7 +13,7 @@
             <objects>
                 <tableViewController id="kkV-3p-vKw" customClass="MessagesTableViewController" customModule="NFCTagReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BRc-Kh-Cb8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
@@ -42,60 +42,93 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" id="C0f-dd-U9i">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e6i-4P-KJS">
-                                <rect key="frame" x="20" y="7" width="40" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="POST"/>
-                                <connections>
-                                    <action selector="test:" destination="kkV-3p-vKw" eventType="touchUpInside" id="gzb-CL-0vU"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <action selector="test:" destination="kkV-3p-vKw" id="VME-PL-HD5"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" id="JT5-Ra-Ig3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7nc-2G-yxM">
-                                <rect key="frame" x="305" y="7" width="89" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7nc-2G-yxM">
+                                <rect key="frame" x="20" y="7" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save">
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="save:" destination="kkV-3p-vKw" eventType="touchUpInside" id="4th-X0-XUq"/>
+                                    <action selector="backButtonTapped:" destination="kkV-3p-vKw" eventType="touchUpInside" id="57V-gI-s8B"/>
+                                    <action selector="deleteRecipe:" destination="kkV-3p-vKw" eventType="touchUpInside" id="EEe-Nj-CxC"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <action selector="save:" destination="kkV-3p-vKw" id="lbw-7i-KDb"/>
-                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" id="NDp-MW-IUu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B3K-5X-f3X">
+                                <rect key="frame" x="306" y="7" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="kkV-3p-vKw" eventType="touchUpInside" id="iEG-l8-Zop"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Recipe Name" id="sUb-7L-pDB">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="cHM-Tm-9FN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9XT-SR-iOS">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="kkV-3p-vKw" eventType="touchUpInside" id="uIb-Y3-Mac"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="mDs-iv-XeN">
-                            <rect key="frame" x="129" y="7" width="156" height="30"/>
+                            <rect key="frame" x="118" y="7" width="130" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="a8k-s8-YQ3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="r68-od-uNn">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Send"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="C0f-dd-U9i">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e6i-4P-KJS">
+                                    <rect key="frame" x="354" y="7" width="40" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                    <state key="normal" title="POST"/>
+                                    <connections>
+                                        <action selector="test:" destination="kkV-3p-vKw" eventType="touchUpInside" id="gzb-CL-0vU"/>
+                                    </connections>
+                                </button>
                                 <connections>
-                                    <action selector="beginScanning:" destination="kkV-3p-vKw" eventType="touchUpInside" id="OBt-o7-FkM"/>
+                                    <action selector="test:" destination="kkV-3p-vKw" id="VME-PL-HD5"/>
                                 </connections>
-                            </button>
-                        </barButtonItem>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="a8k-s8-YQ3">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="r68-od-uNn">
+                                    <rect key="frame" x="254" y="7" width="92" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                    <state key="normal" title="Send"/>
+                                    <connections>
+                                        <action selector="beginScanning:" destination="kkV-3p-vKw" eventType="touchUpInside" id="OBt-o7-FkM"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <connections>
                         <outlet property="recipeNameTextField" destination="mDs-iv-XeN" id="P8D-fJ-EHd"/>
+                        <segue destination="uOq-KM-yKx" kind="unwind" identifier="unwindToRecipes" unwindAction="unwindToRecipesWithSegue:" id="aDC-YU-R4L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uv2-cf-BJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uOq-KM-yKx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="937.68115942028987" y="176.9021739130435"/>
         </scene>
@@ -216,6 +249,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TSD-LM-Urd"/>
+        <segue reference="J7f-EQ-Qp6"/>
     </inferredMetricsTieBreakers>
 </document>
