@@ -240,7 +240,17 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
             recipe[ingredient] = (volume as NSString).doubleValue as AnyObject
             print("\(ingredient): \((volume as NSString).doubleValue)")
         }
+        
+        // delete current recipe
+        deleteRecipe(self)
+        
+        // replace with underscores
+        recipeNameTextField.text = recipeNameTextField.text?.replacingOccurrences(of: " ", with: "_")
+        
+        // store recipe textfield name
         recipe["name"] = recipeNameTextField.text as AnyObject
+        
+        // update recipeName variable
         recipeName = recipeNameTextField.text as! String
         
 //        let parameters: Parameters = [
@@ -272,7 +282,11 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     
     @IBAction func deleteRecipe(_ sender: Any) {
         // delete recipeName
+        Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user+"&recipe_name="+recipeName, method: .delete, encoding: JSONEncoding.default)
         
+        if(sender is UIButton) {
+            backButtonTapped(sender as! UIButton)
+        }
     }
     
 }

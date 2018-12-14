@@ -44,7 +44,7 @@
                     <toolbarItems>
                         <barButtonItem style="plain" id="JT5-Ra-Ig3">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7nc-2G-yxM">
-                                <rect key="frame" x="20" y="7" width="45" height="30"/>
+                                <rect key="frame" x="20" y="3.6666666666666679" width="56" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="Delete">
@@ -52,14 +52,16 @@
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonTapped:" destination="kkV-3p-vKw" eventType="touchUpInside" id="57V-gI-s8B"/>
                                     <action selector="deleteRecipe:" destination="kkV-3p-vKw" eventType="touchUpInside" id="EEe-Nj-CxC"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="deleteRecipe:" destination="kkV-3p-vKw" id="rLL-Iu-tE8"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" id="NDp-MW-IUu">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B3K-5X-f3X">
-                                <rect key="frame" x="306" y="7" width="88" height="30"/>
+                                <rect key="frame" x="306" y="3.6666666666666679" width="88" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="Save">
