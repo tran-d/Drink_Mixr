@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         navigationController.popToRootViewController(animated: true)
-        
+        navigationController.setToolbarHidden(false, animated: false)
+        navigationController.isToolbarHidden = false;
         
         let messageTableViewController = navigationController.topViewController as? MessagesTableViewController
         messageTableViewController?.addMessage(fromUserActivity: ndefMessage)

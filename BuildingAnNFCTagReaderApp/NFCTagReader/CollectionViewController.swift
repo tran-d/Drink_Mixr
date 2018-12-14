@@ -14,23 +14,38 @@ private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController {
     
-    var recipes = ["1","2","3","4","5","6","7","8","9","10"]
-    var recipeNames = ["Lemonade","G Whiz"]
+    var recipeNames: [String] = []
     let user = "robot"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        getRecipes()
-        
+    
+        getRecipes()
     }
 
     func getRecipes() {
+        print("Getting Recipes")
+        
+        recipeNames = []
+        
         Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .get).responseJSON { response in
             if let result = response.result.value {
                 let json = JSON(result)
                 print(json)
+                
+                for (_, subJson):(String,JSON) in json {
+                    for (key, value):(String,JSON) in subJson {
+                        let val = "\(value)"
+                        
+                        if(key == "name") {
+                             self.recipeNames.append(val)
+                        }
+                    }
+                }
             }
+            print(self.recipeNames)
+            
+            self.collectionView.reloadData()
         }
     }
     

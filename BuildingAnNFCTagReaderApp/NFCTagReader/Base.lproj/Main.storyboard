@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recipe Details-->
+        <!--Recipe Name-->
         <scene sceneID="qUT-oy-ZCJ">
             <objects>
                 <tableViewController id="kkV-3p-vKw" customClass="MessagesTableViewController" customModule="NFCTagReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,6 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="VNc-6M-8Vz" style="IBUITableViewCellStyleDefault" id="Kwx-xm-Zdq">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -41,45 +42,58 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Send" id="yeq-MP-YAl">
+                        <barButtonItem style="plain" id="C0f-dd-U9i">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e6i-4P-KJS">
+                                <rect key="frame" x="20" y="7" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="POST"/>
+                                <connections>
+                                    <action selector="test:" destination="kkV-3p-vKw" eventType="touchUpInside" id="gzb-CL-0vU"/>
+                                </connections>
+                            </button>
                             <connections>
-                                <action selector="beginScanning:" destination="kkV-3p-vKw" id="svm-IS-N5X"/>
+                                <action selector="test:" destination="kkV-3p-vKw" id="VME-PL-HD5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" id="JT5-Ra-Ig3">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7nc-2G-yxM">
+                                <rect key="frame" x="305" y="7" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="kkV-3p-vKw" eventType="touchUpInside" id="4th-X0-XUq"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="save:" destination="kkV-3p-vKw" id="lbw-7i-KDb"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Recipe Details" id="sUb-7L-pDB">
-                        <rightBarButtonItems>
-                            <barButtonItem style="plain" id="C0f-dd-U9i">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e6i-4P-KJS">
-                                    <rect key="frame" x="354" y="7" width="40" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="POST"/>
-                                    <connections>
-                                        <action selector="test:" destination="kkV-3p-vKw" eventType="touchUpInside" id="gzb-CL-0vU"/>
-                                    </connections>
-                                </button>
+                    <navigationItem key="navigationItem" title="Recipe Name" id="sUb-7L-pDB">
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="mDs-iv-XeN">
+                            <rect key="frame" x="129" y="7" width="156" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="a8k-s8-YQ3">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="r68-od-uNn">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send"/>
                                 <connections>
-                                    <action selector="test:" destination="kkV-3p-vKw" id="VME-PL-HD5"/>
+                                    <action selector="beginScanning:" destination="kkV-3p-vKw" eventType="touchUpInside" id="OBt-o7-FkM"/>
                                 </connections>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="JT5-Ra-Ig3">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7nc-2G-yxM">
-                                    <rect key="frame" x="257" y="7" width="89" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Save">
-                                        <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="save:" destination="kkV-3p-vKw" eventType="touchUpInside" id="4th-X0-XUq"/>
-                                    </connections>
-                                </button>
-                                <connections>
-                                    <action selector="save:" destination="kkV-3p-vKw" id="lbw-7i-KDb"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="recipeNameTextField" destination="mDs-iv-XeN" id="P8D-fJ-EHd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uv2-cf-BJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,7 +102,7 @@
         <!--Main Navigation Controller-->
         <scene sceneID="nbG-pj-mU2">
             <objects>
-                <navigationController id="STH-Ev-A1D" customClass="MainNavigationController" customModule="NFCTagReader" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="STH-Ev-A1D" customClass="MainNavigationController" customModule="NFCTagReader" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fHA-PX-Tv5">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -99,6 +113,11 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VyD-0r-0d4">
+                        <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.75280589789999997" colorSpace="custom" customColorSpace="sRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="6JN-Kt-C2w" kind="relationship" relationship="rootViewController" id="wEo-Gz-E9C"/>
                     </connections>
@@ -154,6 +173,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Drink Recipes" id="8Y9-Sx-JLf">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="FW0-sg-j1W"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="27d-Cb-aaa">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4fv-gM-AOk" userLabel="Add">
                                 <rect key="frame" x="302" y="0.0" width="92" height="44"/>
@@ -196,6 +216,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="J7f-EQ-Qp6"/>
+        <segue reference="TSD-LM-Urd"/>
     </inferredMetricsTieBreakers>
 </document>

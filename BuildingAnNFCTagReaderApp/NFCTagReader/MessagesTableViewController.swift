@@ -33,15 +33,21 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        recipeNameTextField.textAlignment = .center
+        
         print("Recipe Name: " + recipeName)
         
         if recipeName == "" {
             self.loadDefaultRecipe()
+            recipeNameTextField.text = "untitled"
         }
         else {
             self.getRecipes()
+            recipeNameTextField.text = recipeName
         }
     }
+    
+    @IBOutlet weak var recipeNameTextField: UITextField!
     
     func getRecipes() {
         print("Getting Ingredients")
@@ -228,19 +234,33 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
             recipe[ingredient] = (volume as NSString).doubleValue as AnyObject
             print("\(ingredient): \((volume as NSString).doubleValue)")
         }
-        recipe["name"] = recipeName as AnyObject
+        recipe["name"] = recipeNameTextField.text as AnyObject
         
 //        let parameters: Parameters = [
 //            "recipe": recipe
 //        ]
         
         Alamofire.request("https://stark-beach-45459.herokuapp.com/recipes?user_name="+user, method: .post, parameters: recipe,  encoding: JSONEncoding.default)
+        
+        self.getRecipes()
     }
     
     @IBAction func save(_ sender: Any) {
         print("Saving recipe...")
         self.POST_recipe()
-        self.getRecipes()
+    }
+    
+    /* Pass data through Segue */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "back" {
+            print("Going back...")
+            if let destinationVC = segue.destination as? CollectionViewController {
+                destinationVC.getRecipes()
+            }
+        }
+        if let destinationVC = segue.destination as? CollectionViewController {
+            destinationVC.getRecipes()
+        }
     }
 }
 
