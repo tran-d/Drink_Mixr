@@ -45,9 +45,28 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
             self.getRecipes()
             recipeNameTextField.text = recipeName
         }
+        
+        
+        
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+//        view.addGestureRecognizer(tap)
     }
     
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    
+    
     @IBAction func backButtonTapped(_ sender: UIButton) {
+//        self.save(self)
+        
         self.performSegue(withIdentifier: "unwindToRecipes", sender: self)
     }
     
